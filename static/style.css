@@ -1,0 +1,276 @@
+/* ----------------------------------------------------------------- */
+/* --- DEFAULT: DARK MODE STYLES --- */
+/* ----------------------------------------------------------------- */
+
+body {
+  background-color: #111;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  position: relative; 
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.container {
+  text-align: center;
+}
+
+h1 {
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+#grid {
+  /* Controls button size as well */
+  max-width: 216px; 
+  display: grid;
+  grid-template-rows: repeat(8, 1fr);
+  gap: 10px;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.cell {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #444;
+  text-align: center;
+  font-size: 2rem;
+  text-transform: uppercase;
+  background-color: #222;
+  color: white;
+  border-radius: 8px;
+  box-sizing: border-box; 
+  caret-color: transparent; 
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.cell:focus {
+  border-color: #00bfff;
+  outline: none;
+}
+
+.btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  background: #00bfff;
+  color: white;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  /* Button matching grid width */
+  width: 100%;
+  max-width: 216px; 
+  transition: background 0.2s;
+}
+
+.btn:hover:not(:disabled) {
+  background: #0099cc;
+}
+
+.btn:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+}
+
+/* Mode toggle button style */
+.icon-btn {
+    position: absolute; 
+    top: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding: 5px;
+    z-index: 1001;
+    transition: transform 0.1s;
+}
+.icon-btn:active {
+    transform: scale(0.9);
+}
+#mode-toggle { /* Positioning the light/dark mode icon */
+    right: 20px;
+}
+
+/* Rules button style */
+.rules-icon {
+    left: 20px; /* Position to the left of the title */
+    right: auto;
+    font-size: 1.2rem;
+    padding: 7px 11px;
+    border: 2px solid white;
+    border-radius: 50%;
+    line-height: 1;
+    color: white;
+}
+
+/* Result Colors */
+.green { background-color: #4CAF50 !important; }
+.yellow { background-color: #FFD700 !important; color: #222 !important; }
+.gray { background-color: #555 !important; }
+
+
+/* --- Pop-up Notification Styles --- */
+
+#message {
+  opacity: 0;
+  position: fixed; 
+  top: 10%; 
+  left: 50%;
+  
+  background-color: #333; 
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  font-weight: bold;
+  pointer-events: none; 
+  min-width: 150px;
+  z-index: 1000;
+  
+  transform: translate(-50%, -20px); 
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out, background-color 0.3s, color 0.3s;
+}
+
+#message.show {
+  opacity: 1;
+  transform: translate(-50%, 0); 
+}
+
+
+/* ----------------------------------------------------------------- */
+/* --- LIGHT MODE OVERRIDES (when body has class .light-mode) --- */
+/* ----------------------------------------------------------------- */
+
+.light-mode {
+    background-color: #f0f0f0; 
+    color: #333; 
+}
+
+.light-mode .cell {
+    background-color: #fff; 
+    border: 2px solid #ccc; 
+    color: #333; 
+}
+
+.light-mode .btn {
+    background: #0088cc;
+    color: white;
+}
+
+.light-mode .btn:hover:not(:disabled) {
+    background: #0077aa;
+}
+
+.light-mode .rules-icon {
+    border-color: #333;
+    color: #333;
+}
+
+.light-mode #message {
+    background-color: #fff; 
+    color: #333; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.light-mode .gray { 
+    background-color: #999 !important; 
+    color: #fff !important; 
+}
+
+
+/* ----------------------------------------------------------------- */
+/* --- RULES MODAL STYLES --- */
+/* ----------------------------------------------------------------- */
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 2000; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7); 
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background-color: #222; 
+    margin: 10% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%; 
+    max-width: 450px; 
+    border-radius: 10px;
+    position: relative;
+    animation: fadeIn 0.3s;
+}
+
+.light-mode .modal-content {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    color: #333;
+}
+
+/* Close button */
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #fff;
+    text-decoration: none;
+}
+.light-mode .close-btn:hover,
+.light-mode .close-btn:focus {
+    color: #000;
+}
+
+/* Rules content styling */
+.modal-content h2, .modal-content h3 {
+    margin-top: 10px;
+    margin-bottom: 15px;
+    color: #00bfff;
+    border-bottom: 1px solid #444;
+    padding-bottom: 5px;
+}
+.light-mode .modal-content h2, .light-content h3 {
+    border-bottom: 1px solid #ccc;
+}
+
+.modal-content ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+.modal-content li {
+    margin-bottom: 8px;
+}
+
+/* Color codes for text in rules */
+.green-text { color: #4CAF50; font-weight: bold; }
+.yellow-text { color: #FFD700; font-weight: bold; }
+.gray-text { color: #aaa; font-weight: bold; }
+
+/* Modal animation */
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
