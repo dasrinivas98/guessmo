@@ -1,23 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Daily 4-Letter Word</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3407400145934500"
+    crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GuessMo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body class="bg-gray-900 text-white flex flex-col items-center justify-center min-h-screen">
-  <h1 class="text-3xl font-bold mb-6">Daily 4-Letter Word 🔠</h1>
+<body>
+    <div class="container">
+        <button id="mode-toggle" class="icon-btn">💡</button>
+        <button id="rules-btn" class="icon-btn rules-icon">?</button>
 
-  <div id="board" class="grid grid-rows-8 gap-2"></div>
+        <h1>GuessMo</h1>
+        <div id="grid"></div>
+        <div id="message"></div> 
+        <button id="submit" class="btn">Submit</button>
+    </div>
 
-  <input id="guessInput" maxlength="4" class="text-center text-black p-2 mt-4 rounded" placeholder="Enter 4-letter word" />
-  <button id="submitBtn" class="bg-blue-500 hover:bg-blue-700 mt-2 px-4 py-2 rounded">Submit</button>
+    <div id="rules-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>🎯 GuessMo Rules</h2>
+            <p><strong>Objective:</strong> Guess the hidden 4-letter word in 8 tries or less.</p>
 
-  <p id="message" class="mt-4 text-lg font-semibold"></p>
+            <h3>🕹️ How to Play</h3>
+            <ul>
+                <li>Enter a 4-letter English word where all letters are <b>unique</b> (no repeats like MOON ❌).</li>
+                <li>Press Enter or click <b>Submit</b> to check your guess.</li>
+                <li>Each letter tile changes color based on feedback:
+                    <ul>
+                        <li><span class="green-text">🟩 Green</span> — Letter is correct and in the right position.</li>
+                        <li><span class="yellow-text">🟨 Yellow</span> — Letter is in the word but in the wrong position.</li>
+                        <li><span class="gray-text">⬜ Gray</span> — Letter is not in the word.</li>
+                    </ul>
+                </li>
+                <li>Use the feedback to form your next guess.</li>
+                <li>You have 8 chances to find the correct word.</li>
+            </ul>
 
-  <script src="/static/script.js"></script>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3407400145934500"
-     crossorigin="anonymous"></script>
+            <h3>📅 Daily Word</h3>
+            <p>The secret word changes every day. Once you’ve guessed today’s word (or used all 8 tries), you can come back tomorrow for a new one!</p>
+
+            <h3>🚫 Rules</h3>
+            <ul>
+                <li>Only valid English words are accepted.</li>
+                <li><b>Duplicate letters are not allowed</b> in your guess.</li>
+                <li>After 8 incorrect attempts, the correct answer will be revealed.</li>
+            </ul>
+
+            <h3>🏆 Winning</h3>
+            <p>Guess the secret word before you run out of tries to win! Challenge your friends and compare how many attempts it took you.</p>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
