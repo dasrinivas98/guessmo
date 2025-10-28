@@ -21,7 +21,15 @@ body {
 
 h1 {
   letter-spacing: 2px;
-  margin-bottom: 20px;
+  margin-bottom: 5px; /* Adjusted to fit the streak display above the grid */
+}
+
+/* NEW: Streak Display Style */
+#streak-display {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #00bfff; /* Highlight color */
 }
 
 #grid {
