@@ -5,15 +5,21 @@
     crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GuessMo</title>
+    <title>GuessMo  🔠</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* Embedding CSS here for a single file solution */
+        /* See Section 2 below for the full CSS content */
+    </style>
 </head>
 <body>
     <div class="container">
         <button id="mode-toggle" class="icon-btn">💡</button>
         <button id="rules-btn" class="icon-btn rules-icon">?</button>
 
-        <h1>GuessMo</h1>
+        <h1>GuessMo  🔠</h1>
+        <div id="streak-display" class="streak-box">🔥 Streak: 0</div> 
+        
         <div id="grid"></div>
         <div id="message"></div> 
         <button id="submit" class="btn">Submit</button>
@@ -41,7 +47,7 @@
             </ul>
 
             <h3>📅 Daily Word</h3>
-            <p>The secret word changes every day. Once you’ve guessed today’s word (or used all 8 tries), you can come back tomorrow for a new one!</p>
+            <p>The secret word changes every day at midnight.</p>
 
             <h3>🚫 Rules</h3>
             <ul>
@@ -51,9 +57,10 @@
             </ul>
 
             <h3>🏆 Winning</h3>
-            <p>Guess the secret word before you run out of tries to win! Challenge your friends and compare how many attempts it took you.</p>
+            <p>Guess the secret word before you run out of tries to win! A **daily streak** tracks consecutive wins.</p>
         </div>
     </div>
+    
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
